@@ -14,27 +14,27 @@ $(call inherit-product, vendor/lineage/config/common_full_phone.mk)
 # Inherit from ginkgo device
 $(call inherit-product, device/xiaomi/ginkgo/device.mk)
 
-# Gapps support
-WITH_GMS ?= false
+# Enable UI enhancements
+TARGET_ENABLE_BLUR := true
+PERF_ANIM_OVERRIDE := true
 
-ifeq ($(WITH_GMS),true)
-# Inherit from GMS product config
-$(call inherit-product-if-exists, vendor/google/gms/config.mk)
-$(call inherit-product-if-exists, vendor/google/pixel/config.mk)
-endif
+# Enable features
+TARGET_SUPPORTS_QUICK_TAP := true
+BYPASS_CHARGE_SUPPORTED := true
+TARGET_FACE_UNLOCK_SUPPORTED := true
+USE_PIXEL_CHARGING := true
+
+# Dolby
+$(call inherit-product-if-exists, hardware/dolby/dolby.mk)
+
+# MiCam Port
+$(call inherit-product-if-exists, device/xiaomi/miuicamera-ginkgo/device.mk)
+$(call inherit-product-if-exists, vendor/xiaomi/miuicamera-ginkgo/miuicamera-ginkgo-vendor.mk)
+
 
 # Retrofit
 PRODUCT_USE_DYNAMIC_PARTITIONS := true
 
-# Lunaris
-PRODUCT_SYSTEM_PROPERTIES += ro.lunaris.maintainer=Flopster101
-TARGET_USE_MAPS := true
-TARGET_USE_FILES := true
-
-# MIUI camera support
-$(call soong_config_set,camera,package_name,com.android.camera)
-TARGET_USES_MIUI_CAMERA := true
-TARGET_INCLUDES_MIUI_CAMERA := true
 
 PRODUCT_NAME := lineage_ginkgo
 PRODUCT_DEVICE := ginkgo
