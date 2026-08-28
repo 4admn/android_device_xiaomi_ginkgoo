@@ -87,7 +87,6 @@ DEVICE_PACKAGE_OVERLAYS += \
 PRODUCT_PACKAGES += \
     ApertureGinkgo \
     LineageSDKGinkgo \
-    GinkgoSettingsRes \
     SystemUIOverlayGinkgo
 
 # Parts
